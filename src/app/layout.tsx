@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
-import "./globals.css";
+import "./styles/globals.css";
 import { cn } from "@/lib/utils";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -26,7 +26,7 @@ export default function RootLayout({
       <body
         className={cn(
           plusJakartaSans.className,
-          "h-[100dvh] w-[100dvw] text-[#080705]"
+          "h-[100dvh] w-[100dvw] text-[#080705]",
         )}
       >
         {children}
