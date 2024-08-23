@@ -3,9 +3,11 @@ import Link from "next/link";
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="px-12 py-8">
-      <div className="flex justify-between rounded-full bg-[#0C0B0B] px-[270px] py-8 text-white">
-        <p>Waynaa&copy;2024. All rights reserved!</p>
+    <footer className="lg:py-8 xl:px-12">
+      <div className="flex flex-col items-center justify-between gap-6 bg-[#0C0B0B] py-8 text-white lg:flex-row lg:rounded-full lg:px-[100px] xl:px-[270px]">
+        <p className="text-sm sm:text-base">
+          Waynaa&copy;2024. All rights reserved!
+        </p>
         <div className="flex gap-6">
           <Link href="#">
             <Image

@@ -30,12 +30,12 @@ export const Discover: React.FC = () => {
     },
   ];
   return (
-    <div className="container space-y-14 py-[80px]">
-      <div className="space-y-6">
-        <h2 className="max-w-2xl text-6xl font-bold leading-[74px]">
+    <div className="container space-y-8 pt-[40px] lg:space-y-14 xl:py-[80px]">
+      <div className="space-y-4 lg:space-y-6">
+        <h2 className="text-3xl font-bold leading-[40px] sm:max-w-sm sm:text-4xl lg:max-w-md xl:text-6xl xl:leading-[74px]">
           Discover the City Like Never Before
         </h2>
-        <p className="max-w-xl text-2xl text-gray-600">
+        <p className="text-base text-gray-600 sm:max-w-lg sm:text-xl xl:max-w-xl xl:text-2xl">
           An expedition with{" "}
           <span className="font-medium text-black">Waynaa</span>- Your ultimate
           guide to finding exclusive{" "}
@@ -43,14 +43,18 @@ export const Discover: React.FC = () => {
           hotspots nearby.
         </p>
       </div>
-      <div className="mx-auto grid max-w-[1100px] grid-cols-[356px_1fr_356px]">
-        <div className="space-y-7">
-          <div className="space-y-2">
-            <h4 className="text-2xl font-bold">Exclusive Coupons</h4>
-            <p>Explore the restaurant by the search</p>
+      <div className="mx-auto flex max-w-[1100px] flex-col gap-8 lg:grid lg:grid-cols-[250px_1fr_250px] xl:grid-cols-[356px_1fr_356px]">
+        <div className="space-y-4 lg:space-y-7">
+          <div className="space-y-1 lg:space-y-2">
+            <h4 className="text-base font-bold sm:text-xl lg:text-2xl">
+              Exclusive Coupons
+            </h4>
+            <p className="text-xs sm:text-lg lg:text-base">
+              Explore the restaurant by the search
+            </p>
           </div>
           <div className="relative mx-auto w-full max-w-sm rounded-lg bg-white/85 p-4 after:absolute after:left-1 after:top-1 after:-z-10 after:h-full after:w-full after:scale-[1.01] after:rounded-xl after:bg-[#B7FF2A]">
-            <h4 className="mb-4 text-sm text-gray-800">Near by you</h4>
+            <h4 className="mb-2 text-sm text-gray-800 md:mb-4">Near by you</h4>
             <div className="flex flex-col">
               {items.map((item, index) => (
                 <div
@@ -92,11 +96,15 @@ export const Discover: React.FC = () => {
           <Image src="/discover-screen.svg" alt="Waynaa's usage example" fill />
         </div>
 
-        <div>
-          <div className="space-y-7">
-            <div className="space-y-2">
-              <h4 className="text-2xl font-bold">Exclusive Coupons</h4>
-              <p>Explore the restaurant by the search</p>
+        <div className="sm:mx-auto sm:w-[350px] lg:w-full">
+          <div className="space-y-4 lg:space-y-7">
+            <div className="space-y-1 lg:space-y-2">
+              <h4 className="text-base font-bold sm:text-xl lg:text-2xl">
+                Exclusive Coupons
+              </h4>
+              <p className="text-xs sm:text-lg lg:text-base">
+                Explore the restaurant by the search
+              </p>
             </div>
 
             <div className="border-[#E6E6E6 ] rounded-[30px] border p-[3px]">
@@ -153,11 +161,11 @@ export const Discover: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex items-center justify-between">
-                  <p className="max-w-[280px] text-xs">
+                  <p className="text-xs lg:max-w-[200px] xl:max-w-[280px]">
                     Starbucks brews up coffee drinks and creates a warm,
                     inviting atmosphere for people to gather.
                   </p>
-                  <div className="relative h-[30px] w-[30px] rounded-full border border-[#080705] bg-[#B7FF2A]">
+                  <div className="relative h-[24px] w-[24px] rounded-full border border-[#080705] bg-[#B7FF2A] lg:h-[30px] lg:w-[30px]">
                     <Image src="/up-right-line.svg" alt="Right arrow" fill />
                   </div>
                 </div>

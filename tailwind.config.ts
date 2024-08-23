@@ -14,9 +14,18 @@ const config = {
       center: true,
       screens: {
         "2xl": "1280px",
+        lg: "880px",
+        sm: "600px",
+        xs: "400px",
+        "2xs": "350px",
       },
     },
     extend: {
+      screens: {
+        "3xl": "1680px",
+        xs: "600px",
+        "2xs": "375px",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -1,20 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import screenBack from "@/../public/screen-back.svg";
+import screenFront from "@/../public/screen-front.svg";
+
 export const Cta: React.FC = () => {
   return (
-    <div className="rounded-b-[96px] bg-[#C9FC8C] py-20">
-      <div className="container space-y-14">
-        <div className="space-y-6">
-          <h2 className="max-w-5xl text-6xl font-bold leading-[74px]">
+    <div className="bg-[#C9FC8C] py-[40px] lg:rounded-b-[96px] xl:py-[80px]">
+      <div className="container space-y-8 xl:space-y-14">
+        <div className="space-y-4 xl:space-y-6">
+          <h2 className="max-w-5xl text-3xl font-bold leading-[40px] sm:max-w-xl sm:text-4xl xl:text-6xl xl:leading-[74px]">
             Where Are You Heading Today? Yallah! Get Waynaa
           </h2>
-          <p className="text-2xl text-gray-600">See the city come alive</p>
+          <p className="text-base text-gray-600 sm:text-xl xl:text-2xl">
+            See the city come alive
+          </p>
         </div>
 
-        <div className="relative h-[680px] overflow-hidden rounded-3xl bg-[#0C0B0B] text-white">
-          <div className="absolute left-[90px] top-[170px] flex w-1/2 flex-col gap-[72px]">
-            <h3 className="text-6xl font-bold leading-[66px]">
+        <div className="relative mx-auto flex h-[740px] flex-col gap-12 overflow-hidden rounded-3xl bg-[#0C0B0B] text-white lg:h-[680px] lg:w-full">
+          <div className="relative left-[30px] top-[40px] flex w-[80%] flex-col gap-8 lg:absolute lg:left-[90px] lg:top-[170px] lg:w-1/3 lg:gap-[72px] xl:w-1/2">
+            <h3 className="text-3xl font-bold leading-[30px] lg:text-5xl xl:text-6xl xl:leading-[66px]">
               Let&#39;s Hala <span className="text-[#C9FC8C]">W</span>aynaa and
               start your adventure.
             </h3>
@@ -73,23 +78,19 @@ export const Cta: React.FC = () => {
               </Link>
             </div>
           </div>
-          <div className="relative h-full w-full">
-            <div className="absolute bottom-0 right-0 z-10 -translate-x-[80%]">
-              <Image
-                src="/screen-back.svg"
-                alt="Background usage screen"
-                width={322}
-                height={635}
-              />
-            </div>
-            <div className="absolute bottom-0 right-8 z-20">
-              <Image
-                src="/screen-front.svg"
-                alt="Foreground usage screen"
-                width={415}
-                height={817}
-              />
-            </div>
+          <div className="relative h-full w-full lg:w-full">
+            <Image
+              className="absolute bottom-0 z-10 hidden sm:right-60 sm:block lg:block"
+              src={screenBack}
+              alt="Background usage screen"
+            />
+
+            <Image
+              className="absolute z-20 sm:right-0 lg:bottom-0 lg:right-8"
+              src={screenFront}
+              alt="Foreground usage screen"
+            />
+
             <div className="absolute bottom-0 left-0 right-0 z-30 h-[215px] bg-[linear-gradient(to_bottom,rgba(255,255,255,0),rgba(0,0,0,0.8))]" />
           </div>
         </div>
