@@ -1,13 +1,14 @@
 import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
+import { RegistrationModal } from "@/components/registration_modal";
 
 export const Hero: React.FC = () => {
   return (
     <div className="rounded-b-[96px] bg-[#0C0B0B] py-16">
       <div className="container grid grid-cols-2 gap-x-14 text-white">
         <div>
-          <h1 className="flex flex-col gap-2.5 text-8xl font-semibold">
+          <h1 className="flex flex-col text-8xl font-semibold leading-[120px]">
             <div className="bg-[linear-gradient(to_right,rgb(255,255,255),rgb(169,255,0))] bg-clip-text text-transparent">
               DISCOVER
             </div>
@@ -26,30 +27,27 @@ export const Hero: React.FC = () => {
             </div>
           </h1>
         </div>
-        <div className="flex flex-col items-start gap-8">
-          <div className="flex items-end gap-8">
-            <h3 className="text-5xl font-extrabold uppercase">
-              <span className="text-7xl text-lime-400">W</span>aynaa
-            </h3>
-            <div className="relative flex h-[72px] w-[130px] items-center justify-center overflow-hidden rounded-full bg-lime-400">
-              <Image
-                src="/small-iphone.png"
-                alt="Little example of usage"
-                width={72}
-                height={52}
-              />
+        <div className="space-y-14">
+          <div className="space-y-8">
+            <div className="flex items-end gap-8">
+              <h3 className="text-6xl font-extrabold uppercase">
+                <span className="text-8xl text-lime-400">W</span>aynaa
+              </h3>
+              <div className="relative flex h-[72px] w-[130px] items-center justify-center overflow-hidden rounded-full bg-lime-400">
+                <Image
+                  src="/small-iphone.png"
+                  alt="Little example of usage"
+                  width={72}
+                  height={52}
+                />
+              </div>
             </div>
+            <p className="text-2xl">
+              Experience the vibrant soul of your city over map that reveals
+              where life is happening.
+            </p>
           </div>
-          <p className="text-2xl">
-            Experience the vibrant soul of your city over map that reveals where
-            life is happening.
-          </p>
-          <Button
-            size="lg"
-            className="h-[75px] rounded-full px-8 text-3xl font-normal text-white"
-          >
-            Get Started &rarr;
-          </Button>
+          <RegistrationModal />
         </div>
       </div>
 
