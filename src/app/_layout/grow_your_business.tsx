@@ -5,8 +5,8 @@ import usageImg from "@/../public/usage-example.png";
 
 export const GrowYourBusiness: React.FC = () => {
   return (
-    <div className="rounded-t-[48px] bg-[#EFF1F4] py-[40px] xl:rounded-t-[96px] xl:py-[120px]">
-      <div className="container space-y-8 xl:space-y-14">
+    <div className="rounded-t-[48px] bg-[#EFF1F4] py-[40px] xl:rounded-t-[96px] xl:py-[120px] xl:w-[70vw] lg:w-[70vw]">
+      <div className="container space-y-8 xl:space-y-14 xl:w-[70vw] lg:w-[70vw]">
         <div className="space-y-4 xl:space-y-6">
           <h2 className="max-w-xs text-3xl font-bold leading-[40px] sm:max-w-sm sm:text-4xl xl:max-w-2xl xl:text-6xl xl:leading-[74px]">
             Grow Your Business With Waynaa
