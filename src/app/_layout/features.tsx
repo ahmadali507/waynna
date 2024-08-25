@@ -19,7 +19,7 @@ export const Features: React.FC = () => {
           <div className="relative col-span-2 md:col-span-1 lg:col-span-3 h-[40vh] md:h-[50vh] lg:h-[70vh] overflow-hidden rounded-xl">
             <Image
               className="h-full w-full object-cover"
-              src="/svgs/Girls.svg"
+              src="/svgs/Glrls.svg"
               width={100}
               height={100}
               quality={80}
