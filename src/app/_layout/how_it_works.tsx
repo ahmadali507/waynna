@@ -1,117 +1,170 @@
 "use client";
 import Image from "next/image";
-import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-  MotionValue,
-} from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
 
-import iPhone from "@/../public/iphone-template.svg";
-import step1 from "@/../public/image-1.svg";
-import step2 from "@/../public/image-2.svg";
-import step3 from "@/../public/image-3.svg";
-import step4 from "@/../public/image-4.svg";
-import step5 from "@/../public/image-5.svg";
-
-function useParallax(value: MotionValue<number>, distance: number) {
-  return useTransform(value, [0, 1], [-distance, distance]);
+interface Step {
+  title: string;
+  description: string;
 }
 
-const Picture = ({ id }: { id: number }) => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref });
-  const y = useParallax(scrollYProgress, 300);
+export default function HowItWorks() {
+  const [activeStep, setActiveStep] = useState<number | null>(null);
+  const [highlightedStep, setHighlightedStep] = useState<number | null>(null);
+  const stepsRef = useRef<HTMLLIElement[]>([]);
 
-  return (
-    <section>
-      <div ref={ref}>
-        <div className="relative h-[830px] w-[420px]">
-          <Image src={`/image-${id}.svg`} alt={`Step ${id}`} fill />
-        </div>
-        <motion.h2 style={{ y }}>{`#00${id}`}</motion.h2>
-      </div>
-    </section>
-  );
-};
-
-export const HowItWorks: React.FC = () => {
-  const steps = [
+  const steps: Step[] = [
     {
-      id: 1,
       title: "Open the App",
-      description: "Download and open the app to get started.",
+      description: "Download and open the app to get started",
     },
     {
-      id: 2,
       title: "Explore the Map",
       description:
         "Browse through the interactive map to find nearby businesses, events, and hotspots.",
     },
     {
-      id: 3,
       title: "Discover New Places",
       description:
-        "Check out detailed listings with reviews, photos, and ratings",
+        "Check out detailed listings with reviews, photos, and ratings.",
     },
     {
-      id: 4,
       title: "Unlock Exclusive Offers",
       description:
         "Tap on your favorite spots to reveal special discounts and deals.",
     },
     {
-      id: 5,
       title: "Enjoy Your Experience",
       description:
         "Visit the places you love and enjoy the exclusive benefits.",
     },
   ];
 
+  useEffect(() => {
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      let newHighlightedStep: number | null = null;
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = stepsRef.current.indexOf(entry.target as HTMLLIElement);
+          if (index !== -1) newHighlightedStep = index;
+        }
+      });
+
+      if (newHighlightedStep !== null) {
+        setActiveStep(newHighlightedStep);
+        setHighlightedStep(newHighlightedStep);
+
+        // Reset highlight after a delay to ensure visibility
+        setTimeout(() => {
+          if (highlightedStep === newHighlightedStep) {
+            setHighlightedStep(null);
+          }
+        }, 1000); // Adjust delay as needed
+      }
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.5, // Adjust threshold to control when elements are considered visible
+      rootMargin: "0px 0px -50% 0px", // Adjust rootMargin to ensure elements are highlighted when approaching the viewport
+    });
+
+    stepsRef.current.forEach((step) => {
+      if (step) observer.observe(step);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [highlightedStep]);
+
   return (
-    <div className="relative -z-10 rounded-[96px] bg-[#080705] py-[120px]">
-      <div className="container space-y-14 text-white">
-        <div className="grid grid-cols-2 gap-y-8">
-          <h2 className="text-6xl font-semibold leading-snug">How It Works</h2>
-          <p className="col-span-2 col-start-1 max-w-4xl text-2xl text-gray-400">
-            A Quick Guide to Navigating Waynaa
-          </p>
-        </div>
-        <div className="grid grid-cols-2 gap-x-[110px]">
-          <div className="relative flex h-full w-full flex-col items-center rounded-[40px] bg-white py-10 after:absolute after:-left-4 after:-top-4 after:z-[-5] after:h-full after:w-full after:rounded-[40px] after:border-4 after:border-[#C9FC8C] after:bg-[#080705]">
-            <div className="h-[830px] w-[420px] overflow-hidden">
-              <div className="relative overflow-hidden">
-                <Image src={iPhone} quality={80} alt="Iphone template" />
-                {[1, 2, 3, 4, 5].map((index) => (
-                  <div className="absolute top-0 z-0" key={index}>
-                    <Image
-                      src={`/image-${index}.svg`}
-                      alt={`Step ${index}`}
-                      height={780}
-                      width={350}
-                    />
-                  </div>
-                ))}
+    <div className="min-w-screen flex min-h-screen items-center justify-center rounded-[8rem] bg-black p-4">
+      <div className="w-full max-w-6xl p-8 md:p-12 lg:p-16">
+        <h1 className="mb-2 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+          How It Works
+        </h1>
+        <p className="mb-8 text-sm text-gray-400 md:text-base">
+          A Quick Guide to Navigating Waynaa
+        </p>
+
+        <div className="flex flex-col gap-8 lg:flex-row lg:gap-16">
+          {/* Phone Image */}
+          <div className="flex justify-center lg:w-1/2 lg:justify-start">
+            <div className="relative">
+              <div className="absolute h-[88vh] inset-0 rounded-[2.5rem] p-1 border-2 border-lime-400  w-[28rem]">
+                <div className="h-[90vh] w-[28rem] flex flex-col justify-center items-center bg-gray-200 rounded-[2.5rem]">
+                  <Image
+                    src="/Howitworks/border.svg"
+                    alt="Findo App Login Screen"
+                    className="relative z-10 w-80  h-[70vh] rounded-[2rem] md:w-72 "
+                    width={100}
+                    height={100}
+                  />
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="flex gap-8">
-            <div className="h-screen w-1 bg-gray-500"></div>
-            <div className="flex flex-col gap-20">
-              {steps.map((step) => (
-                <div key={step.id} className="space-y-4">
-                  <p className="text-lg text-[#8B949E]">STEP {step.id}</p>
-                  <h4 className="text-4xl text-[#C9FC8C]">{step.title}</h4>
-                  <p className="text-lg">{step.description}</p>
-                </div>
+          {/* Steps */}
+          <div className="lg:w-1/2">
+            <ol className="relative border-l mb-12 border-gray-700">
+              {steps.map((step, index) => (
+                <li
+                  key={index}
+                  ref={(el) => {
+                    if (el) stepsRef.current[index] = el;
+                  }}
+                  className={`group ml-10 transition-all duration-300 ease-in-out ${
+                    index === activeStep || index === highlightedStep
+                      ? "opacity-100"
+                      : "opacity-80"
+                  }`}
+                >
+                  <span
+                    className={`absolute -left-6 flex h-8 w-8 items-center justify-center rounded-full ring-4 ring-gray-900 transition-all duration-300 ml-[5px] ease-in-out ${
+                      index === activeStep || index === highlightedStep
+                        ? "bg-lime-400"
+                        : "bg-gray-500"
+                    }`}
+                  >
+                    <span
+                      className={`transition-colors duration-300 ${
+                        index === activeStep || index === highlightedStep
+                          ? "text-black"
+                          : "text-gray-100 z-10 opacity-100"
+                      }`}
+                    >
+                      {index + 1}
+                    </span>
+                  </span>
+                  <h3
+                    className={`mb-1 flex items-center text-[1rem] font-medium transition-colors duration-300 text-gray-500 mt-8`}
+                  >
+                    Step {index + 1}
+                  </h3>
+                  <h3
+                    className={`mb-1 flex items-center text-xl font-medium transition-colors duration-300 mt-5 ${
+                      index === activeStep || index === highlightedStep
+                        ? "text-lime-300"
+                        : "text-white"
+                    }`}
+                  >
+                    {step.title}
+                  </h3>
+                  <p
+                    className={`mb-4 text-sm font-normal transition-colors duration-300 ${
+                      index === activeStep || index === highlightedStep
+                        ? "text-gray-300"
+                        : "text-gray-400"
+                    }`}
+                  >
+                    {step.description}
+                  </p>
+                </li>
               ))}
-            </div>
+            </ol>
           </div>
         </div>
       </div>
     </div>
   );
-};
+}

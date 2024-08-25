@@ -6,7 +6,7 @@ import { Footer } from "./_layout/footer";
 import { GrowYourBusiness } from "./_layout/grow_your_business";
 import { Header } from "./_layout/header";
 import { Hero } from "./_layout/hero";
-import { HowItWorks } from "./_layout/how_it_works";
+import HowItWorks from "./_layout/how_it_works";
 import { WhyChoose } from "./_layout/why_choose";
 
 const HomePage: React.FC = () => {
