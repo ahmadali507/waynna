@@ -9,7 +9,6 @@ interface Step {
 
 export default function HowItWorks() {
   const [activeStep, setActiveStep] = useState<number | null>(null);
-  const [highlightedStep, setHighlightedStep] = useState<number | null>(null);
   const stepsRef = useRef<HTMLLIElement[]>([]);
 
   const steps: Step[] = [
@@ -39,32 +38,27 @@ export default function HowItWorks() {
     },
   ];
 
+  const pictures = [
+    "/Howitworks/1.svg",
+    "/Howitworks/2.svg",
+    "/Howitworks/3.svg",
+    "/Howitworks/4.svg",
+    "/Howitworks/5.svg",
+  ];
+
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-      let newHighlightedStep: number | null = null;
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const index = stepsRef.current.indexOf(entry.target as HTMLLIElement);
-          if (index !== -1) newHighlightedStep = index;
+          if (index !== -1) setActiveStep(index);
         }
       });
-
-      if (newHighlightedStep !== null) {
-        setActiveStep(newHighlightedStep);
-        setHighlightedStep(newHighlightedStep);
-
-        // Reset highlight after a delay to ensure visibility
-        setTimeout(() => {
-          if (highlightedStep === newHighlightedStep) {
-            setHighlightedStep(null);
-          }
-        }, 1000); // Adjust delay as needed
-      }
     };
 
     const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.5, // Adjust threshold to control when elements are considered visible
-      rootMargin: "0px 0px -50% 0px", // Adjust rootMargin to ensure elements are highlighted when approaching the viewport
+      threshold: 0.5,
+      rootMargin: "0px 0px -50% 0px",
     });
 
     stepsRef.current.forEach((step) => {
@@ -74,7 +68,7 @@ export default function HowItWorks() {
     return () => {
       observer.disconnect();
     };
-  }, [highlightedStep]);
+  }, []);
 
   return (
     <div className="min-w-screen flex min-h-screen items-center justify-center rounded-[8rem] bg-black p-4">
@@ -99,6 +93,15 @@ export default function HowItWorks() {
                     width={100}
                     height={100}
                   />
+                  {activeStep !== null && (
+                    <Image
+                      src={pictures[activeStep] || pictures[0]}
+                      alt={`Step ${activeStep + 1} Image`}
+                      className="absolute top-28 z-20 w-[18rem] h-[60vh] rounded-[4rem] md:w-72"
+                      width={100}
+                      height={100}
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -114,21 +117,17 @@ export default function HowItWorks() {
                     if (el) stepsRef.current[index] = el;
                   }}
                   className={`group ml-10 transition-all duration-300 ease-in-out ${
-                    index === activeStep || index === highlightedStep
-                      ? "opacity-100"
-                      : "opacity-80"
+                    index === activeStep ? "opacity-100" : "opacity-80"
                   }`}
                 >
                   <span
                     className={`absolute -left-6 flex h-8 w-8 items-center justify-center rounded-full ring-4 ring-gray-900 transition-all duration-300 ml-[5px] ease-in-out ${
-                      index === activeStep || index === highlightedStep
-                        ? "bg-lime-400"
-                        : "bg-gray-500"
+                      index === activeStep ? "bg-lime-400" : "bg-gray-500"
                     }`}
                   >
                     <span
                       className={`transition-colors duration-300 ${
-                        index === activeStep || index === highlightedStep
+                        index === activeStep
                           ? "text-black"
                           : "text-gray-100 z-10 opacity-100"
                       }`}
@@ -143,18 +142,14 @@ export default function HowItWorks() {
                   </h3>
                   <h3
                     className={`mb-1 flex items-center text-xl font-medium transition-colors duration-300 mt-5 ${
-                      index === activeStep || index === highlightedStep
-                        ? "text-lime-300"
-                        : "text-white"
+                      index === activeStep ? "text-lime-300" : "text-white"
                     }`}
                   >
                     {step.title}
                   </h3>
                   <p
                     className={`mb-4 text-sm font-normal transition-colors duration-300 ${
-                      index === activeStep || index === highlightedStep
-                        ? "text-gray-300"
-                        : "text-gray-400"
+                      index === activeStep ? "text-gray-300" : "text-gray-400"
                     }`}
                   >
                     {step.description}
