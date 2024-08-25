@@ -94,7 +94,7 @@ export const Discover: React.FC = () => {
     <div ref={containerRef} className="min-h-screen overflow-hidden">
       <div
         id="discover-section"
-        className="container space-y-8 px-4 pt-10 sm:px-6 lg:max-w-[90%] lg:space-y-14 xl:py-20 2xl:max-w-[80%]"
+        className="container space-y-8 px-4 pt-10 sm:px-6 lg:max-w-[90%]  lg:space-y-14 xl:py-20 2xl:max-w-[80%]"
       >
         {/* Header Section */}
         <div className="space-y-4 lg:space-y-6">

@@ -80,16 +80,17 @@ export default function HowItWorks() {
           A Quick Guide to Navigating Waynaa
         </p>
 
-        <div className="flex flex-col gap-8 lg:flex-row lg:gap-16">
+        {/* Grid Container for responsiveness */}
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
           {/* Phone Image */}
-          <div className="flex justify-center lg:w-1/2 lg:justify-start">
+          <div className="hidden lg:flex justify-center lg:justify-start">
             <div className="relative">
-              <div className="absolute h-[88vh] inset-0 rounded-[2.5rem] p-1 border-2 border-lime-400  w-[28rem]">
-                <div className="h-[90vh] w-[28rem] flex flex-col justify-center items-center bg-gray-200 rounded-[2.5rem]">
+              <div className="absolute inset-0 h-[88vh] w-[28rem] rounded-[2.5rem] p-1 border-2 border-lime-400">
+                <div className="flex h-[90vh] w-[28rem] flex-col items-center justify-center rounded-[2.5rem] bg-gray-200">
                   <Image
                     src="/Howitworks/border.svg"
                     alt="Findo App Login Screen"
-                    className="relative z-10 w-80  h-[70vh] rounded-[2rem] md:w-72 "
+                    className="relative z-10 w-80 h-[70vh] rounded-[2rem] md:w-72"
                     width={100}
                     height={100}
                   />
@@ -109,14 +110,14 @@ export default function HowItWorks() {
 
           {/* Steps */}
           <div className="lg:w-1/2">
-            <ol className="relative border-l mb-12 border-gray-700">
+            <ol className="relative mb-12 border-l border-gray-700">
               {steps.map((step, index) => (
                 <li
                   key={index}
                   ref={(el) => {
                     if (el) stepsRef.current[index] = el;
                   }}
-                  className={`group ml-10 transition-all duration-300 ease-in-out ${
+                  className={`group ml-10 transition-all duration-300 ease-in-out lg:w-80 xl:w-80 ${
                     index === activeStep ? "opacity-100" : "opacity-80"
                   }`}
                 >
@@ -136,12 +137,12 @@ export default function HowItWorks() {
                     </span>
                   </span>
                   <h3
-                    className={`mb-1 flex items-center text-[1rem] font-medium transition-colors duration-300 text-gray-500 mt-8`}
+                    className={`mt-8 mb-1 flex items-center text-[1rem] font-medium text-gray-500 transition-colors duration-300`}
                   >
                     Step {index + 1}
                   </h3>
                   <h3
-                    className={`mb-1 flex items-center text-xl font-medium transition-colors duration-300 mt-5 ${
+                    className={`mt-5 mb-1 flex items-center text-xl font-medium transition-colors duration-300 ${
                       index === activeStep ? "text-lime-300" : "text-white"
                     }`}
                   >
