@@ -19,6 +19,7 @@ import {
 } from "./ui/select";
 
 export const RegistrationModal: React.FC = () => {
+
   const options = [
     {
       value: "customer",

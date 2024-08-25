@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 export const Hero: React.FC = () => {
   // we will have create a useEffect for the icons effect...
   const [showBuildingIcons, setShowBuildingIcons] = useState(false);
+
   useEffect(() => {
     const AnimateIcons = () => {
       if (!showBuildingIcons) {

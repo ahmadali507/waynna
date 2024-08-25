@@ -1,9 +1,13 @@
+'use client'
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import usageImg from "@/../public/usage-example.png";
+import GetStartedDialog from "@/components/ContactForm";
 
 export const GrowYourBusiness: React.FC = () => {
+  const [formOpen , setIsformOpen] = useState(false); 
+
   return (
     <div className="bg-[#EFF1F4] py-[40px] xl:py-[120px]">
       <div className="mx-auto w-[90vw] max-w-[70vw] space-y-8 xl:space-y-14">
@@ -44,14 +48,17 @@ export const GrowYourBusiness: React.FC = () => {
             {/* Button */}
             <div className="flex justify-start">
               <Button
+
                 size="lg"
                 className="h-[30px] rounded-full px-8 text-lg font-normal text-white xl:h-[55px] xl:text-xl"
+                onClick={()=>{setIsformOpen(true)}}
               >
                 Let&#39;s talk &rarr;
               </Button>
             </div>
           </div>
         </div>
+        <GetStartedDialog open = {formOpen} onOpenChange={setIsformOpen}/>
       </div>
     </div>
   );
