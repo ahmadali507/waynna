@@ -215,19 +215,35 @@ export const Discover: React.FC = () => {
                 </div>
                 <div className="flex flex-row justify-between items-center">
                   <div className="flex flex-row items-center">
-                    <p className="text-xs text-[#646262] font-semibold">Tyson Street,  NYC,  *  Food</p>
-                     <Image
-                      src={}
-                      alt="Foodie"
-                      width={14}
-                      height={14}
-                     />
+                    <p className="text-xs text-[#646262] font-semibold">Tyson Street, NYC • Food 🍔</p>
                   </div>
 
+                  <div className="flex flex-row items-center">
+                    <Image
+                    src="svgs/walk.svg"
+                    alt="walkling"
+                    width={18}
+                    height={18}
+                    />
+                    <p className="text-xs text-[#646262] font-semibold">2 mins away</p>
+                  </div>
                 </div>
-                <Button className="w-full rounded-full bg-[#1c1d1b] py-2 text-xs text-white">
-                  Get Offer
-                </Button>
+
+                <div className = "flex flex-row justify-between items-center">
+                   <p className="text-[9px] text-[#363333] font-semibold font-inter w-[75%]">
+                   Starbucks brews up coffee drinks and creates a warm, inviting atmosphere for people to gather.
+                   </p>
+                   <div className=" h-6 w-6 flex flex-row justify-center items-center rounded-full bg-[#B7FF2A] border-[2px] border-black">
+                       <Image
+                        src="/svgs/tiltedarrow.svg"
+                        alt = "left down arrow"
+                        width = {12}
+                        height={12}
+                        className=""
+                       />
+                   </div>
+
+                </div>
               </div>
             </div>
           </motion.div>
