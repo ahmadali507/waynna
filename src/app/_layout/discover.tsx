@@ -78,7 +78,7 @@ export const Discover: React.FC = () => {
           </p>
         </div>
 
-        <div className="mx-auto flex max-w-full flex-col gap-x-2 lg:grid lg:grid-cols-[150px_1fr_150px] xl:grid-cols-[200px_1fr_200px]">
+        <div className="mx-auto flex max-w-full flex-col gap-x-2 lg:grid lg:grid-cols-[150px_1fr_150px] xl:grid-cols-3">
           {/* First Column */}
           <motion.div
             ref={firstColumnRef}
@@ -244,6 +244,7 @@ export const Discover: React.FC = () => {
                    </div>
 
                 </div>
+
               </div>
             </div>
           </motion.div>
