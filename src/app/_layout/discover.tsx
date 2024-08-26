@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, useScroll, useTransform } from "framer-motion";
 
 export const Discover: React.FC = () => {
   const items = [
@@ -32,205 +32,208 @@ export const Discover: React.FC = () => {
     },
   ];
 
+  const [isLocked, setIsLocked] = useState(true); // To lock the scroll
   const [showFinalSection, setShowFinalSection] = useState(false);
-  const [progressFirst, setProgressFirst] = useState(0);
-  const [progressSecond, setProgressSecond] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const controls = useAnimation();
+
+  // Use scroll hook for animation
+  const { scrollYProgress } = useScroll({
+    container: containerRef,
+    layoutEffect: false,
+  });
+
+  // Map scroll progress to progress bar and final section display
+  const progressFirst = useTransform(scrollYProgress, [0, 0.5], ["0%", "100%"]);
+  const progressSecond = useTransform(
+    scrollYProgress,
+    [0.5, 0.9],
+    ["0%", "100%"],
+  );
 
   useEffect(() => {
-    const handleWheel = (event: WheelEvent) => {
-      if (containerRef.current && containerRef.current.contains(event.target as Node)) {
-        event.preventDefault(); // Prevent default scrolling behavior
+    scrollYProgress.onChange((value) => {
+      if (value >= 0.9) {
+        setShowFinalSection(true);
+        setIsLocked(false); // Unlock scroll when progress bars are full
+      } else {
+        setShowFinalSection(false);
+        setIsLocked(true); // Lock scroll again if below threshold
+      }
+    });
+  }, [scrollYProgress]);
 
-        let scrollPosition = containerRef.current.scrollTop;
-        scrollPosition += event.deltaY;
-
-        const sectionHeight = containerRef.current.scrollHeight - containerRef.current.clientHeight;
-
-        // Define the scroll ranges for the progress bars
-        const firstThreshold = 0.2 * sectionHeight;
-        const secondThreshold = 0.8 * sectionHeight;
-
-        if (scrollPosition < firstThreshold) {
-          const progress = Math.min((scrollPosition / firstThreshold) * 5, 100); // Adjust the scaling factor to make it slower
-          setProgressFirst(progress);
-          setProgressSecond(0);
-        } else if (scrollPosition >= firstThreshold && scrollPosition < secondThreshold) {
-          const progress = Math.min(
-            ((scrollPosition - firstThreshold) / (secondThreshold - firstThreshold)) * 5, // Adjust the scaling factor to make it slower
-            100
-          );
-          setProgressFirst(100);
-          setProgressSecond(progress);
-          setShowFinalSection(false);
-        } else if (scrollPosition >= secondThreshold) {
-          setProgressFirst(100);
-          setProgressSecond(100);
-          setTimeout(()=>{
-            
-            setShowFinalSection(true); // Show final section when progress is complete
-          }, 1800)
-          containerRef.current.removeEventListener("wheel", handleWheel); // Remove custom scroll behavior
-        }
-
-        containerRef.current.scrollTop = scrollPosition;
+  useEffect(() => {
+    const handleScroll = (e: WheelEvent) => {
+      if (isLocked) {
+        e.preventDefault(); // Prevent scrolling if locked
       }
     };
 
     if (containerRef.current) {
-      containerRef.current.addEventListener("wheel", handleWheel, {
+      containerRef.current.addEventListener("wheel", handleScroll, {
         passive: false,
       });
     }
 
     return () => {
       if (containerRef.current) {
-        containerRef.current.removeEventListener("wheel", handleWheel);
+        containerRef.current.removeEventListener("wheel", handleScroll);
       }
     };
-  }, [progressFirst, progressSecond]);
+  }, [isLocked]);
+
   return (
-    <div ref={containerRef} className="min-h-screen overflow-hidden">
+    <div
+      ref={containerRef}
+      className={`min-h-screen ${isLocked ? "overflow-hidden" : "overflow-auto"}`}
+    >
       <div
         id="discover-section"
-        className="container space-y-8 px-4 pt-10 sm:px-6 lg:max-w-[90%]  lg:space-y-14 xl:py-20 2xl:max-w-[80%]"
+        className="container mx-auto space-y-8 px-4 pt-6 sm:px-6 lg:max-w-[70vw] lg:space-y-8 xl:py-12"
       >
         {/* Header Section */}
-        <div className="space-y-4 lg:space-y-6">
-          <h2 className="text-2xl font-bold leading-8 sm:text-3xl sm:leading-10 lg:w-[20rem] xl:text-4xl xl:leading-[54px]">
+        <div className="space-y-2 lg:space-y-6">
+          <h2 className="text-2xl font-bold leading-8 sm:text-3xl sm:leading-10 lg:w-[20rem] xl:w-[25rem] xl:text-[2.4rem] xl:leading-[54px]">
             Discover the City Like Never Before
           </h2>
-          <p className="text-sm text-gray-600 sm:max-w-lg sm:text-base lg:text-lg xl:max-w-xl xl:text-[18px]">
+          <p className="font-plus-jakarta-sans text-left text-sm font-medium leading-[35px] text-[#162A41CC] sm:max-w-lg sm:text-base lg:text-lg xl:w-[26rem] xl:text-[16px]">
             An expedition with{" "}
-            <span className="font-medium text-black">Waynaa</span> - Your
-            ultimate guide to finding exclusive{" "}
+            <span className="text-[#162A41] font-medium">
+              Waynaa
+            </span>{" "}
+            - Your ultimate guide to finding exclusive{" "}
             <span className="font-medium text-black">New & Trending</span>{" "}
             hotspots nearby.
           </p>
         </div>
 
         {/* Content Section */}
-        <div className="mx-auto flex flex-col gap-8 lg:grid lg:grid-cols-[250px_1fr_250px] xl:grid-cols-[356px_1fr_356px]">
+        <div className="mx-auto flex max-w-full flex-col gap-8 lg:grid lg:grid-cols-[150px_1fr_150px] xl:grid-cols-[200px_1fr_200px]">
           {/* Left Column */}
-          <div className="relative mt-20 space-y-4 lg:space-y-7">
-            {/* Progress Bar */}
-            <div className="absolute left-0 top-0 h-[1px]  lg:w-[32.7vw] xl:w-[32.7vw] z-10 bg-gray-200">
-              <div
-                className="h-full bg-[#1c1d1b]"
-                style={{
-                  width: `${progressFirst}%`,
-                  transition: "width 2s ease-out",
-                }}
-              />
-              <div
-                className="absolute top-[-6px] mb-2 h-3 w-3 rounded-full border-2 border-[#B7FF2A]"
-                style={{
-                  left: `calc(${progressFirst}% - 7px)`,
-                  transition: "left 2s ease-out",
-                }}
-              />{" "}
-            </div>
-            {/* Content */}
-            <div className="space-y-1 lg:space-y-2">
-              <h4 className="text-base font-bold sm:text-xl lg:text-xl">
-                Exclusive Coupons
-              </h4>
-              <p className="text-xs sm:text-base lg:text-base">
-                Explore the restaurant by the search
-              </p>
-            </div>
-            <div className="relative mx-auto w-full max-w-sm rounded-lg bg-white/85 p-4 after:absolute after:left-1 after:top-1 after:-z-10 after:h-full after:w-full after:scale-[1.01] after:rounded-xl after:bg-[#B7FF2A]">
-              <h4 className="mb-2 text-sm text-gray-800 lg:mb-4">Nearby You</h4>
-              <div className="flex flex-col">
-                {items.map((item, index) => (
-                  <div
-                    key={index}
-                    className="flex items-start justify-between border-b border-[#DFFBA3] py-2"
-                  >
-                    <div className="flex items-center space-x-4">
-                      <Image
-                        src={item.icon}
-                        alt={item.title}
-                        className="rounded-full"
-                        height={32}
-                        width={32}
-                      />
-                      <div>
-                        <h3 className="text-sm font-semibold text-gray-900">
-                          {item.title}
-                        </h3>
-                        <p className="text-xs text-gray-500">
-                          {item.description}
-                        </p>
-                        <p className="text-xs text-gray-500">{item.distance}</p>
-                      </div>
-                    </div>
-                    <Button
-                      size="sm"
-                      className="h-[20px] rounded-full border-0 text-xs text-[#B7FF2A]"
-                      style={{ fontSize: "10px" }}
+          <motion.div
+            className="z-10 sm:mx-auto sm:w-[250px] lg:w-full"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ amount: 0.5 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            <div className="relative mt-20 space-y-4 lg:space-y-4 xl:mt-0">
+              {/* Progress Bar */}
+              <div className="absolute left-0 top-0 z-10 h-[1px] bg-gray-200 lg:w-[32.7vw] xl:w-[32.7vw]">
+                <motion.div
+                  className="h-full bg-[#1c1d1b]"
+                  style={{
+                    width: progressFirst,
+                    transition: "width 2s ease-out",
+                  }}
+                />
+                <motion.div
+                  className="absolute top-[-6px] mb-2 h-3 w-3 rounded-full border-2 border-[#B7FF2A]"
+                  style={{
+                    left: `calc(${progressFirst}`,
+                    transition: "left 2s ease-out",
+                  }}
+                />
+              </div>
+
+              {/* Content */}
+              <div className="space-y-1 lg:space-y-2">
+                <h4 className="text-base font-bold sm:text-xl lg:text-xl">
+                  Exclusive Coupons
+                </h4>
+                <p className="text-xs sm:text-base lg:text-base">
+                  Explore the restaurant by the search
+                </p>
+              </div>
+              <div className="relative mx-auto w-full max-w-sm rounded-lg bg-white/85 p-4 after:absolute after:left-1 after:top-1 after:-z-10 after:h-full after:w-full after:scale-[1.01] after:rounded-xl after:bg-[#B7FF2A]">
+                <h4 className="mb-2 text-sm text-gray-800 lg:mb-4">
+                  Nearby You
+                </h4>
+                <div className="flex flex-col">
+                  {items.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex items-start justify-between border-b border-[#DFFBA3] py-2"
                     >
-                      Offer Live
-                    </Button>
-                  </div>
-                ))}
+                      <div className="flex items-center space-x-4">
+                        <Image
+                          src={item.icon}
+                          alt={item.title}
+                          className="rounded-full"
+                          height={32}
+                          width={32}
+                        />
+                        <div>
+                          <h3 className="text-sm font-semibold text-gray-900">
+                            {item.title}
+                          </h3>
+                          <p className="text-xs text-gray-500">
+                            {item.description}
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            {item.distance}
+                          </p>
+                        </div>
+                      </div>
+                      <Button
+                        size="sm"
+                        className="h-[20px] rounded-full border-0 text-xs text-[#B7FF2A]"
+                        style={{ fontSize: "10px" }}
+                      >
+                        Offer Live
+                      </Button>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Center Image */}
-          <div className="relative h-[400px] w-full lg:h-[645px]">
+          <div className="relative h-[300px] w-full lg:h-[500px]">
             <Image
               src="/discover-screen.svg"
               alt="Waynaa's usage example"
               fill
-              className="object-contain z-0"
+              className="z-0 object-contain"
             />
           </div>
-            {
-              showFinalSection && <Image
-               src = "/svgs/Starbucks.svg"
-               alt = "starbuck Icons "
-               width={128}
-               height={128}
-               className = 'absolute left-[50vw] top-[282.6vh] z-20'
-              />
-            }
 
           {/* Right Column with Progress Bar */}
-          <div className="relative space-y-4 lg:space-y-7 mt-44">
+          <div className="relative mt-20 space-y-4 lg:space-y-7">
             {/* Progress Bar */}
-            <div className="absolute left-[-6rem] top-0 right-12 mr-12 h-[1px] w-full xl:[32.7vw] lg:w-[32.7vw] bg-gray-200">
-              <div
+            <div className="xl:[22.7vw] absolute left-[-6rem] right-12 top-0 mr-12 h-[1px] w-full bg-gray-200 lg:w-[22.7vw]">
+              <motion.div
                 className="h-full bg-[#1c1d1b]"
                 style={{
-                  width: `${progressSecond}%`,
+                  width: progressSecond,
                   transition: "width 2s ease-out",
                 }}
               />
-              <div
-                className="absolute top-[-6px] mb-2 mr-2 h-3 w-3 rounded-full  border-2 border-[#B7FF2A] mt-[2px] ml-2"
+              <motion.div
+                className="absolute top-[-6px] mb-2 ml-2 mr-2 mt-[2px] h-3 w-3 rounded-full border-2 border-[#B7FF2A]"
                 style={{
-                  left: `calc(${progressSecond}% - 7px)`,
+                  left: `calc(${progressSecond.get()}% - 7px)`,
                   transition: "left 2s ease-out",
                 }}
-              />{" "}
+              />
             </div>
+
             {/* Final Section Animation */}
-            {showFinalSection ? (
-            <motion.div
-            className="z-10 sm:mx-auto sm:w-[350px] lg:w-full"
-            initial={{ opacity: 0, y: 50 }} // Starting state for the animation
-            animate={showFinalSection ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }} // Define the animate states
-            transition={{ duration: 0.5, ease: "easeOut" }} // Transition duration and easing
-          >
-                <div className="space-y-4 lg:space-y-7">
+            {showFinalSection && (
+              <motion.div
+                className="z-10 sm:mx-auto sm:w-[250px] lg:w-full"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ amount: 0.5 }}
+                transition={{ duration: 3, ease: "easeOut" }}
+              >
+                <div className="space-y-4 lg:w-[120%] lg:space-y-7">
                   <div className="space-y-1 lg:space-y-2">
                     <h4 className="text-base font-bold sm:text-xl lg:text-xl xl:text-xl">
                       Exclusive Coupons
                     </h4>
-                    <p className="text-xs sm:text-base lg:text-base xl:text-md">
+                    <p className="xl:text-md text-xs sm:text-base lg:text-base">
                       Explore the restaurant by the search
                     </p>
                   </div>
@@ -279,8 +282,6 @@ export const Discover: React.FC = () => {
                   </div>
                 </div>
               </motion.div>
-            ) : (
-              <div> show it</div>
             )}
           </div>
         </div>

@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import "@fontsource/inter"
 import { cn } from "@/lib/utils";
 
 import womansImg from "@/../public/womans.png";
@@ -7,26 +7,29 @@ import shopImg from "@/../public/shop.png";
 
 export const WhyChoose: React.FC = () => {
   return (
-    <div className="container space-y-8 py-[40px] xl:space-y-14 xl:py-[120px] xl:w-[70vw] lg:w-[70vw]">
-      <div className="space-y-4 xl:space-y-6">
-        <h2 className="text-3xl font-bold leading-[40px] sm:text-4xl xl:text-4xl xl:leading-[54px] lg:text-3xl lg:leading-[44px]">
-          Why choose Waynaa?
+    <div className="container space-y-2 py-[40px] xl:space-y-6 xl:pt-[80px] xl:w-[70vw] lg:w-[70vw]">
+      <div className="space-y-4 xl:space-y-2">
+        <h2 className="text-3xl font-bold  font-inter leading-[40px] sm:text-4xl xl:text-[2.4rem] xl:leading-[54px] lg:text-3xl lg:leading-[44px]">
+          Why Choose Waynaa?
         </h2>
-        <p className="text-base text-gray-600 sm:text-xl xl:text-xl lg:text-xl">
-          See the stats that matter!
+        <p className="text-base text-[#162A41] opacity-[90%] sm:text-xl xl:text-lg lg:text-xl">
+          See the Stats That matter!
         </p>
       </div>
-      <div className="space-y-8 lg:grid lg:grid-cols-2 lg:gap-x-4 lg:gap-y-12 lg:space-y-0">
-        <div className="flex flex-col justify-between overflow-hidden rounded-3xl bg-[#EFF1F4]">
+      <div className="space-y-4 lg:grid lg:grid-cols-2 lg:gap-x-4 lg:gap-y-4 lg:space-y-0 xl:gap-y-2">
+        <div className="flex flex-col justify-between h-[90%] overflow-hidden rounded-3xl bg-[#EFF1F4]">
           <div className="lg:pb-15 space-y-4 p-6 lg:space-y-8 lg:p-10">
-            <h3 className="text-4xl font-medium lg:text-3xl xl:text-4xl">
+            <h3 className="text-4xl  lg:text-3xl xl:text-[2.5rem] font-inter font-medium">
               70%
             </h3>
             <div className="space-y-2">
-              <h4 className="text-lg font-semibold lg:text-xl xl:text-xl xl:w-full lg:w-full">
+              <h4 className="text-lg font-medium lg:text-xl xl:text-[1.4rem] xl:w-full lg:w-full xl:font-inter" style={{
+                fontWeight : '550', 
+                opacity : '90%'
+              }}>
                 Stay Ahead of Tomorrow&#39;s Trends
               </h4>
-              <p className="text-base leading-[24px] lg:text-lg lg:leading-[30px]">
+              <p className="text-black font-inter leading-[24px] lg:text-lg lg:leading-[30px] xl:w-[26rem] ">
                 70% of people miss out on new and trending hotspots relying on
                 internet searches. Waynaa&#39;s let&#39;s you discover them in
                 single touch.
@@ -41,9 +44,9 @@ export const WhyChoose: React.FC = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col justify-between overflow-hidden rounded-3xl bg-[#EFF1F4]">
+        <div className="flex flex-col justify-between h-[90%] overflow-hidden rounded-3xl bg-[#EFF1F4]">
           <div className="lg:pb-15 space-y-4 p-6 lg:space-y-8 lg:p-10">
-            <h3 className="text-4xl font-medium lg:text-3xl xl:text-4xl">
+            <h3 className="text-4xl font-medium lg:text-3xl xl:text-[2.5rem] font-inter">
               80%
             </h3>
             <div className="space-y-2">
@@ -69,8 +72,8 @@ export const WhyChoose: React.FC = () => {
             src="/quote.svg"
             alt="Double quotation mark"
             className="absolute left-10 top-0 -translate-y-1/2"
-            width={40}
-            height={40}
+            width={60}
+            height={60}
           />
 
           <div className="xs:flex-row xs:items-center flex flex-col gap-4">
@@ -78,25 +81,26 @@ export const WhyChoose: React.FC = () => {
               <Image
                 src="/portrait.svg"
                 alt="Portrait of Naomi Thomas"
-                width={80}
-                height={80}
+                width={60}
+                height={60}
               />
 
               <div className="flex flex-col gap-0.5">
-                <p className="text-xs font-semibold lg:text-sm xl:text-sm">Naomi Thomas</p>
-                <p className="text-xs lg:text-sm xl:text-sm">CEO, xyz company</p>
+                <p className="text-xs font-semibold lg:text-sm xl:text-[16px]">Naomi Thomas</p>
+                <p className="text-xs lg:text-sm xl:text-xs text-[#080705] opacity-[80%]">CEO, xyz company</p>
               </div>
             </div>
             <div className="xs:ml-auto xs:mr-0 flex items-center gap-4">
-              <div className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full border border-black text-2xl">
+              <div className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full border border-black opacity-[30%] text-2xl">
                 <Image
+                className="opacity-[70%]"
                   src="/left-arrow.svg"
                   alt="Left pointed arrow"
                   width={22}
                   height={22}
                 />
               </div>
-              <span>1 / 7</span>
+              <span className="text-xs">1 / 7</span>
               <div className="flex h-[40px] w-[40px] cursor-pointer items-center justify-center rounded-full border border-black text-2xl">
                 <Image
                   src="/right-arrow.svg"
@@ -107,7 +111,7 @@ export const WhyChoose: React.FC = () => {
               </div>
             </div>
           </div>
-          <p className="mt-4 text-base leading-[24px] text-[#080705] lg:text-[24px] lg:leading-[40px] xl:mt-8 xl:text-[24px] xl:font-medium xl:leading-[40px]">
+          <p className="mt-4 text-base leading-[24px] text-[#080705] lg:text-[24px] lg:leading-[40px] xl:mt-8 xl:text-[23px] xl:font-medium xl:leading-[40px]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut

@@ -71,26 +71,31 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <div className="min-w-screen flex min-h-screen items-center justify-center rounded-[8rem] bg-black p-4">
-      <div className="w-full max-w-6xl p-8 md:p-12 lg:p-16">
-        <h1 className="mb-2 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+    <div className="min-w-screen flex min-h-screen items-center justify-center rounded-[4rem] bg-black p-4">
+      <div className="w-full p-8 md:p-12 lg:p-16 xl:w-[74vw]">
+        <h1 className="font-inter mb-2 pb-6 text-3xl font-bold text-white opacity-[95%] md:text-4xl lg:text-[2.4rem]">
           How It Works
         </h1>
-        <p className="mb-8 text-sm text-gray-400 md:text-base">
+        <p
+          className="font-inter mb-8 leading-[16px] text-[#FFFFFF] opacity-[80%] md:text-base xl:text-[1.1rem]"
+          style={{
+            fontWeight: "400",
+          }}
+        >
           A Quick Guide to Navigating Waynaa
         </p>
 
         {/* Grid Container for responsiveness */}
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
+        <div className="grid gap-5 lg:grid-cols-2 lg:gap-0">
           {/* Phone Image */}
-          <div className="hidden lg:flex justify-center lg:justify-start">
+          <div className="hidden justify-center lg:flex lg:justify-start">
             <div className="relative">
-              <div className="absolute inset-0 h-[88vh] w-[28rem] rounded-[2.5rem] p-1 border-2 border-lime-400">
-                <div className="flex h-[90vh] w-[28rem] flex-col items-center justify-center rounded-[2.5rem] bg-gray-200">
+              <div className="border-[ #C9FC8C] absolute inset-0 h-[73vh] w-[20rem] rounded-[1.5rem] border-2 p-1 border-[#C9FC8C]">
+                <div className="flex h-[73vh] w-[20rem] flex-col items-center justify-center rounded-[1.5rem] bg-gray-100">
                   <Image
                     src="/Howitworks/border.svg"
                     alt="Findo App Login Screen"
-                    className="relative z-10 w-80 h-[70vh] rounded-[2rem] md:w-72"
+                    className="relative z-40 h-[65vh] w-80 rounded-[2rem] md:w-72"
                     width={100}
                     height={100}
                   />
@@ -98,7 +103,7 @@ export default function HowItWorks() {
                     <Image
                       src={pictures[activeStep] || pictures[0]}
                       alt={`Step ${activeStep + 1} Image`}
-                      className="absolute top-28 z-20 w-[18rem] h-[60vh] rounded-[4rem] md:w-72"
+                      className="absolute top-[2.7rem] z-20 h-[60vh] xl:w-[20rem] rounded-[4rem] md:w-72"
                       width={100}
                       height={100}
                     />
@@ -122,35 +127,35 @@ export default function HowItWorks() {
                   }`}
                 >
                   <span
-                    className={`absolute -left-6 flex h-8 w-8 items-center justify-center rounded-full ring-4 ring-gray-900 transition-all duration-300 ml-[5px] ease-in-out ${
-                      index === activeStep ? "bg-lime-400" : "bg-gray-500"
+                    className={`absolute -left-6 ml-[11px] flex h-6 w-6 items-center justify-center rounded-full ring-4 ring-gray-900 transition-all duration-300 ease-in-out ${
+                      index === activeStep ? "bg-[#C9FC8C]" : "bg-gray-500"
                     }`}
                   >
                     <span
                       className={`transition-colors duration-300 ${
                         index === activeStep
                           ? "text-black"
-                          : "text-gray-100 z-10 opacity-100"
+                          : "z-10 text-gray-100 opacity-100 text-[10px]"
                       }`}
                     >
                       {index + 1}
                     </span>
                   </span>
                   <h3
-                    className={`mt-8 mb-1 flex items-center text-[1rem] font-medium text-gray-500 transition-colors duration-300`}
+                    className={` mt-8 flex items-center text-[0.8rem] font-medium text-gray-300 transition-colors duration-300 `}
                   >
-                    Step {index + 1}
+                    STEP {index + 1}
                   </h3>
                   <h3
-                    className={`mt-5 mb-1 flex items-center text-xl font-medium transition-colors duration-300 ${
-                      index === activeStep ? "text-lime-300" : "text-white"
+                    className={`mb-1 mt-5 flex items-center text-xl font-medium transition-colors duration-300 ${
+                      index === activeStep ? "text-[#C9FC8C]" : "text-white"
                     }`}
                   >
                     {step.title}
                   </h3>
                   <p
-                    className={`mb-4 text-sm font-normal transition-colors duration-300 ${
-                      index === activeStep ? "text-gray-300" : "text-gray-400"
+                    className={`mb-4 text-[12px] font-normal transition-colors duration-300 w-[30vw] mt-4 ${
+                      index === activeStep ? "text-white" : "text-gray-400"
                     }`}
                   >
                     {step.description}
