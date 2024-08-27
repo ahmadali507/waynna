@@ -106,20 +106,20 @@ export default function HowItWorks() {
           A Quick Guide to Navigating Waynaa
         </motion.p>
 
-        <div className="grid gap-5 lg:grid-cols-2 lg:gap-0">
-          <div className="hidden justify-center lg:flex lg:justify-start">
+        <div className="grid gap-5 grid-cols-2 lg:gap-0">
+          <div className=" justify-center lg:flex lg:justify-start">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1.9, delay: 0.6 }}
               className="relative"
             >
-              <div className="border-[ #C9FC8C] absolute inset-0 h-[73vh] w-[20rem] rounded-[1.5rem] border-2 p-1 border-[#C9FC8C]">
-                <div className="flex h-[73vh] w-[20rem] flex-col items-center justify-center rounded-[1.5rem] bg-gray-100">
+              <div className="border-[ #C9FC8C] h-80 w-44 absolute inset-0 xl:h-[73vh] lg:h-[73vh] lg:w-[20rem] xl:w-[20rem] rounded-[1.5rem] border-2 p-1 border-[#C9FC8C]">
+                <div className="flex h-80 w-44 xl:h-[73vh] xl:w-[20rem] lg:h-[73vh] lg:w-[20rem] flex-col items-center justify-center rounded-[1.5rem] bg-gray-100">
                   <Image
                     src="/Howitworks/border.svg"
                     alt="Findo App Login Screen"
-                    className="relative z-40 h-[65vh] w-80 rounded-[2rem] md:w-72"
+                    className="relative z-40 h-60 xl:h-[65vh] lg:w-80 xl:w-80 lg:h-[65vh] rounded-[2rem] md:w-72"
                     width={100}
                     height={100}
                   />
@@ -133,7 +133,7 @@ export default function HowItWorks() {
                       <Image
                         src={pictures[activeStep] || pictures[0]}
                         alt={`Step ${activeStep + 1} Image`}
-                        className="absolute top-[2.7rem] left-1 z-20 h-[60vh] xl:w-[20rem] rounded-[4rem] md:w-72"
+                        className="absolute top-[4.44rem] h-44 left-[2.67rem] w-24 xl:top-[2.7rem] xl:left-1 z-20  lg:h-[60vh] lg:w-[20rem]  xl:h-[60vh] xl:w-[20rem] md:w-72"
                         width={100}
                         height={100}
                       />
@@ -187,7 +187,7 @@ export default function HowItWorks() {
                       color: index === activeStep ? "#C9FC8C" : "#FFFFFF",
                     }}
                     transition={{ duration: 0.5 }}
-                    className="mb-1 mt-5 flex items-center text-xl font-medium"
+                    className="mb-1 mt-5 flex items-center text-lg lg:text-xl xl:text-xl font-medium"
                   >
                     {step.title}
                   </motion.h3>
@@ -196,7 +196,7 @@ export default function HowItWorks() {
                       color: index === activeStep ? "#FFFFFF" : "#9CA3AF",
                     }}
                     transition={{ duration: 0.3 }}
-                    className="mb-4 text-[12px] font-normal w-[30vw] mt-4"
+                    className="mb-4 xl:text-[12px] text-[10px] lg:text-[12px] font-normal xl:w-[30vw] lg:w-[30vw] w-44 mt-4"
                   >
                     {step.description}
                   </motion.p>
