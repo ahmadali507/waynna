@@ -39,7 +39,7 @@ export const RegistrationModal: React.FC = () => {
       <DialogTrigger asChild>
         <Button
           size="lg"
-        className="flex h-[30px] items-center gap-4 rounded-full px-8 text-lg font-normal text-white xl:h-[55px] xl:text-2xl shadow-[0px_0px_54px_0px_#B4F72F33]"
+        className="flex h-[50px] mb-10 items-center gap-4 rounded-full px-8 text-lg font-normal text-white xl:h-[55px] xl:text-2xl shadow-[0px_0px_54px_0px_#B4F72F33]"
         >
           Get Started <span>&rarr;</span>
         </Button>

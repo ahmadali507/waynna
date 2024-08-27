@@ -63,13 +63,13 @@ export const Discover: React.FC = () => {
     <div className="min-h-screen overflow-auto">
       <div
         id="discover-section"
-        className="container mx-auto space-y-8 px-4 pt-6 sm:px-6 lg:max-w-[70vw] lg:space-y-8 xl:py-12"
+        className="container sm:min-w-full mx-auto space-y-8 px-4 pt-6 sm:px-6 lg:w-[70vw] lg:space-y-8 xl:py-12 xl:min-w-[70vh]"
       >
         <div className="space-y-2 lg:space-y-6">
-          <h2 className="text-2xl font-bold leading-8 sm:text-3xl sm:leading-10 lg:w-[20rem] xl:w-[25rem] xl:text-[2.4rem] xl:leading-[54px]">
+          <h2 className="text-[1.7rem] font-bold w-[64%] leading-10 sm:text-3xl sm:leading-10 lg:w-[20rem] xl:w-[25rem] xl:text-[2.4rem] xl:leading-[54px]">
             Discover the City Like Never Before
           </h2>
-          <p className="font-plus-jakarta-sans text-left text-sm font-medium leading-[35px] text-[#162A41CC] sm:max-w-lg sm:text-base lg:text-lg xl:w-[26rem] xl:text-[16px]">
+          <p className="font-plus-jakarta-sans text-left text-lg font-medium leading-[25px] text-[#162A41CC] sm:max-w-lg sm:text-base lg:text-lg xl:w-[26rem] xl:text-[16px]">
             An expedition with{" "}
             <span className="text-[#162A41] font-medium">Waynaa</span> - Your
             ultimate guide to finding exclusive{" "}
@@ -90,14 +90,14 @@ export const Discover: React.FC = () => {
             <div className="relative mt-20 space-y-4 lg:space-y-4 xl:mt-20">
               <div className="absolute left-0 z-10 h-[1px] bg-gray-200 lg:w-[32.7vw] xl:w-[32.7vw]" />
               <div className="space-y-1 lg:space-y-2 mt-10">
-                <h4 className="text-base font-bold sm:text-xl lg:text-xl ">
+                <h4 className="text-xs font-bold sm:text-xl lg:text-xl ">
                   Exclusive Coupons
                 </h4>
-                <p className="text-xs sm:text-base lg:text-base w-80 xl:text-[13px]">
+                <p className="text-[8px] w-60 sm:text-base lg:text-base xl:w-80  lg:w-80 xl:text-[13px]">
                   Explore the restaurant by the search
                 </p>
               </div>
-              <div className="relative mx-auto w-[16rem] h-[18rem] max-w-sm rounded-lg bg-white/85 p-4 after:absolute after:left-1 after:top-1 after:-z-10 after:h-full after:w-full after:scale-[1.01] after:rounded-xl after:bg-[#B7FF2A]">
+              <div className="relative lg:mx-auto w-[60%] lg:w-[16rem] lg:h-[18rem] xl:w-[16rem] xl:h-[18rem] max-w-sm rounded-lg bg-white/85 p-4 after:absolute after:left-1 after:top-1 after:-z-10 after:h-full after:w-full after:scale-[1.01] after:rounded-xl after:bg-[#B7FF2A]">
                 <h4 className="mb-2 text-xs text-gray-800 lg:mb-4">
                   Nearby You
                 </h4>

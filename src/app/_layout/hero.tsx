@@ -28,10 +28,10 @@ export const Hero: React.FC = () => {
   return (
     <div className="rounded-b-[48px] bg-[#0C0B0B] py-8 lg:py-16 xl:rounded-b-[96px]">
       {/* Set the container width to 90% on large screens */}
-      <div className="container mx-auto w-full space-y-1 text-white sm:grid sm:grid-cols-2 sm:gap-x-6 sm:space-y-0 lg:w-[90vw] lg:gap-x-8 xl:w-[70vw] 2xl:w-[80vw] 2xl:gap-x-14 ">
+      <div className="container mx-auto w-full space-y-4 text-white sm:grid sm:grid-cols-2 sm:gap-x-6 sm:space-y-4 lg:w-[90vw] lg:gap-x-8 xl:w-[70vw] 2xl:w-[80vw] 2xl:gap-x-14 ">
         <div>
           {/* Apply text size classes for lg, xl, and 2xl screens */}
-          <h1 className="flex flex-col text-4xl font-bold leading-[60px] sm:text-4xl lg:text-[80px] xl:text-[70px] xl:leading-[90px]" style={{
+          <h1 className="flex flex-col text-5xl font-bold leading-[60px] sm:text-4xl sm:font-extrabold lg:text-[80px] xl:text-[70px] xl:leading-[90px]" style={{
             letterSpacing : '4px !important', 
             fontWeight : '800 !important'
           }}>
@@ -57,12 +57,12 @@ export const Hero: React.FC = () => {
         <div className="space-y-12">
           <div className="space-y-6 sm:space-y-4 xl:space-y-8">
             <div className="flex items-center gap-4 lg:gap-8">
-              <h3 className="text-3xl font-extrabold uppercase xl:text-3xl">
-                <span className="text-5xl text-lime-400 xl:text-5xl">W</span>
+              <h3 className="text-2xl font-extrabold uppercase xl:text-3xl">
+                <span className="text-4xl text-lime-400 xl:text-5xl">W</span>
                 aynaa
               </h3>
-              <div className="relative flex h-[45px] w-[78px] items-center justify-center overflow-hidden rounded-full bg-lime-400 xl:h-[52px] xl:w-[90px]">
-                <div className="relative h-[45px] w-[45px] xl:h-[48px] xl:w-[42px]">
+              <div className="relative flex h-[35px] w-[68px] items-center justify-center overflow-hidden rounded-full bg-lime-400 xl:h-[52px] xl:w-[90px]">
+                <div className="relative h-[35px] w-[35px] xl:h-[48px] xl:w-[42px]">
                   <Image
                     src="/small-iphone.png"
                     alt="Little example of usage"
@@ -71,7 +71,7 @@ export const Hero: React.FC = () => {
                 </div>
               </div>
             </div>
-            <p className="text-base sm:text-sm lg:text-xl xl:text-[1.1rem] xl:w-[28rem] lg:w-[25rem]">
+            <p className="text-base sm:text-xs lg:text-xl xl:text-[1.1rem] xl:w-[28rem] lg:w-[25rem]">
               Experience the vibrant soul of your city over a map that reveals
               where life is happening.
             </p>
@@ -80,7 +80,7 @@ export const Hero: React.FC = () => {
           <RegistrationModal />
         </div>
       </div>
-      <div className="aspect-fit relative mx-auto mt-8 flex h-[90vh] w-[calc(100vw-64px)] overflow-hidden rounded-[20px] bg-red-500 lg:w-[calc(100vw-128px)] lg:rounded-[40px] xl:mt-32">
+      <div className="aspect-fit h-[42vh] relative mx-auto mt-12 flex xl:h-[90vh] lg:h-[90vh] w-[calc(100vw-64px)] overflow-hidden rounded-[20px] bg-red-500 lg:w-[calc(100vw-128px)] lg:rounded-[40px] xl:mt-32">
         <video
           src="/video.mp4"
           autoPlay
