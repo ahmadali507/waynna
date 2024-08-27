@@ -16,7 +16,7 @@ export const Features: React.FC = () => {
         </div>
 
         {/* Grid Container for the Images */}
-        <div className="grid grid-cols-1 gap-[10px] sm:grid-cols-2 lg:grid-cols-5 lg:gap-[2px] w-full lg:w-[65vw]">
+        <div className="grid grid-cols-1 gap-[10px] sm:grid-cols-2 lg:grid-cols-5 lg:gap-[12px] w-full lg:w-[65vw]">
           {/* First Row - Adjust for Mobile and Larger Screens */}
           <div className="relative col-span-1 h-[40vh] sm:col-span-2 md:col-span-1 md:h-[50vh] lg:col-span-3 lg:h-[70vh] overflow-hidden rounded-xl">
             <Image
@@ -28,7 +28,7 @@ export const Features: React.FC = () => {
             />
           </div>
 
-          <div className="relative col-span-1 h-[40vh] sm:col-span-2 md:col-span-1 md:h-[50vh] lg:col-span-2 lg:h-[70vh] xl:h-[66.6vh] xl:w-[28vw] overflow-hidden rounded-xl bg-[#080705]">
+          <div className="relative col-span-1 h-[40vh] sm:col-span-2 md:col-span-1 md:h-[50vh] lg:col-span-2 lg:h-[70vh] xl:h-[69.6vh] xl:w-[28vw] overflow-hidden rounded-xl bg-[#080705]">
             <Image
               className="h-full w-full object-cover"
               src="/svgs/Navigate.svg"

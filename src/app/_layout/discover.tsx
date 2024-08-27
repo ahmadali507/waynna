@@ -163,7 +163,10 @@ export const Discover: React.FC = () => {
             animate={thirdColumnControls}
             transition={{ duration: 0.8, ease: "easeInOut", delay: 0.4 }}
           >
-            <div className="xl:[22.7vw] absolute  right-[8rem] top-0 mr-12 h-[1px] w-full bg-gray-200 lg:w-[22.7vw]" />
+           <div className="flex flex-row justify-start item-center">
+            <div className="absolute -left-3 -top-2 xl:top-0   w-4 h-4 border-2 xl:-left-[3.4rem] border-lime-400 bg-black rounded-full"/>
+            <div className=" absolute xl:[2.7vw] xl:top-2 lg:top-2 xl:-left-[2.5rem] mr-12 h-[1px] w-full bg-gray-400 lg:w-[22.7vw]" />
+           </div>
             <div className="space-y-1 lg:space-y-2 w-[20rem] ">
               <h4 className="text-base font-bold sm:text-xl lg:text-xl xl:text-xl">
                 Exclusive Coupons

@@ -41,13 +41,13 @@ export const WhyChoose: React.FC = () => {
           </div>
           <div className="h-[300px] w-full">
             <Image
-              className=" h-[100%] w-full xl:h-full xl:w-full object-contain"
+              className=" h-[140%] w-full xl:h-full xl:w-full object-contain"
               src={womansImg}
               alt="Womans shopping"
             />
           </div>
         </div>
-        <div className="flex flex-col justify-between h-[70%] lg:h-[90%] xl:h-[90%] overflow-hidden rounded-3xl bg-[#EFF1F4]">
+        <div className="flex flex-col justify-between h-[85%] overflow-hidden rounded-3xl bg-[#EFF1F4]">
           <div className="lg:pb-15 space-y-4 p-6 lg:space-y-8 lg:p-10">
             <h3 className="text-4xl font-medium lg:text-3xl xl:text-[2.5rem] font-inter">
               80%
@@ -64,7 +64,7 @@ export const WhyChoose: React.FC = () => {
           </div>
           <div className="h-[300px] w-full">
             <Image
-              className="h-[100%] w-full xl:h-full xl:w-full object-contain"
+              className="h-[140%] w-full xl:h-full xl:w-full object-contain"
               src={shopImg}
               alt="Sales sign hanging on shop's door"
             />
